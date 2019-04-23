@@ -1,0 +1,26 @@
+{ "title_display" : {
+    "has_marc_source" : {
+        "source_fields" : [
+            { "marc_field" : [ "245a", "245c", "245d", "245e", "245f", "245g", "245h", "245i", "245j", "245k" ], "modify_value_for_index" : "true", "include_alternate_script" : "false" },
+            { "marc_field" : [ "245l", "245m", "245n", "245o", "245p", "245q", "245r", "245s", "245t", "245u" ], "modify_value_for_index" : "true", "include_alternate_script" : "false" },
+            { "marc_field" : [ "245v", "245w", "245x", "245y", "245y" ], "modify_value_for_index" : "true", "include_alternate_script" : "false"  }
+        ],
+        "searchworks_examples" : [ "1855552", "8550908" ]
+    },
+    "has_mods_source" : {
+        "source_fields" : [
+            { "mods_field" : [ "mods/titleInfo/nonSort" ], "modify_value_for_index" : "true", "concat_id" : 1 },
+            { "mods_field" : [ "mods/titleInfo/title" ], "modify_value_for_index" : "true", "concat_id" : 2 },
+            { "mods_field" : [ "mods/titleInfo/subtitle" ], "modify_value_for_index" : "true", "concat_id" : 3 },
+            { "mods_field" : [ "mods/titleInfo/partNumber" ], "modify_value_for_index" : "true", "concat_id" : 4 },
+            { "mods_field" : [ "mods/titleInfo/partName" ], "modify_value_for_index" : "true", "concat_id" : 5 }
+        ],
+        "concatenation" : [ 1, " ", 2, " : ", 3, ". ", 4, ", ", 5, "." ],
+        "searchworks_examples" : [ "md912kq2368" ]
+    },
+    "allows_multiple_values" : "false",
+    "in_searchworks" : {
+        "search_results" : { "first" : "true" }
+    }
+    }
+}

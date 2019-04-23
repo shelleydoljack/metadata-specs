@@ -1,0 +1,98 @@
+[{
+
+"solr_field" : {
+
+  "genre_ssim" : {
+    "has_marc_source" : {
+      "source_fields" : [
+        { "marc_field" : [ "655a", "655v" ], "modify_value_for_index" : "true", "include_alternate_script" : "false", "is_mapped" : "true" },
+        { "marc_field" : [ "600v" ], "modify_value_for_index" : "true", "include_alternate_script" : "false", "is_mapped" : "true" },
+        { "marc_field" : [ "610v" ], "modify_value_for_index" : "true", "include_alternate_script" : "false", "is_mapped" : "true" },
+        { "marc_field" : [ "611v" ], "modify_value_for_index" : "true", "include_alternate_script" : "false", "is_mapped" : "true" },
+        { "marc_field" : [ "630v" ], "modify_value_for_index" : "true", "include_alternate_script" : "false", "is_mapped" : "true" },
+        { "marc_field" : [ "647v" ], "modify_value_for_index" : "true", "include_alternate_script" : "false", "is_mapped" : "true" },
+        { "marc_field" : [ "648v" ], "modify_value_for_index" : "true", "include_alternate_script" : "false", "is_mapped" : "true" },
+        { "marc_field" : [ "650v" ], "modify_value_for_index" : "true", "include_alternate_script" : "false", "is_mapped" : "true" },
+        { "marc_field" : [ "651v" ], "modify_value_for_index" : "true", "include_alternate_script" : "false", "is_mapped" : "true" },
+        { "marc_field" : [ "654v" ], "modify_value_for_index" : "true", "include_alternate_script" : "false", "is_mapped" : "true" },
+        { "marc_field" : [ "656v" ], "modify_value_for_index" : "true", "include_alternate_script" : "false", "is_mapped" : "true" },
+        { "marc_field" : [ "657v" ], "modify_value_for_index" : "true", "include_alternate_script" : "false", "is_mapped" : "true" }
+      ]
+    },
+    "has_mods_source" : {
+      "source_fields" : [
+        { "mods_field" : [ "mods/genre" ], "is_mapped" : "true" },
+        { "mods_field" : [ "mods/subject/genre" ], "is_mapped" : "true" }
+      ]
+    },
+    "allows_multiple_values" : "true",
+    "has_mapping" : {
+      "mapping" : "GENRE_MAPPING",
+      "also_keep_original_value" : "true",
+      "if_value_not_in_mapping_default_to" : "value"
+    },
+    "in_searchworks" : {
+      "facet" : "Genre"
+    }
+  },
+
+  "imprint_display" : {
+    "has_marc_source" : {
+      "source_fields" : [
+        { "marc_field" : [ "250a", "250b" ], "join_multiple_instances_with_separator" : " ", "uniquify_values" : "true", "include_alternate_script" : "false", "concat_id" : 1 },
+        { "marc_field" : [ "250a", "250b" ], "join_multiple_instances_with_separator" : " ", "uniquify_values" : "true", "include_alternate_script" : "only", "concat_id" : 4 },
+        { "marc_field" : [ "2603", "260a", "260b", "260c", "260e", "260f", "260g" ], "join_multiple_instances_with_separator" : " ", "uniquify_values" : "true", "include_alternate_script" : "false", "concat_id" : 2 },
+        { "marc_field" : [ "2603", "260a", "260b", "260c", "260e", "260f", "260g" ], "join_multiple_instances_with_separator" : " ", "uniquify_values" : "true", "include_alternate_script" : "only", "concat_id" : 5 },
+        { "marc_field" : [ "2643", "264a", "264b", "264c" ], "uniquify_values" : "true", "include_alternate_script" : "false", "concat_id" : 3 },
+        { "marc_field" : [ "2643", "264a", "264b", "264c" ], "uniquify_values" : "true", "include_alternate_script" : "only", "concat_id" : 6 }
+      ],
+      "concatenation" : [ 1, " ", 4, " - ", 2, " ", 5, " ", 3, " ", 6 ],
+      "searchworks_examples" : [ "27553", "8373248" ]
+    },
+    "has_mods_source" : {
+      "source_fields" : [
+        { "mods_field" : [ "mods/originInfo/edition" ], "concat_id" : 1 },
+        { "mods_field" : [ "mods/originInfo/place" ], "concat_id" : 2 },
+        { "mods_field" : [ "mods/originInfo/publisher" ], "concat_id" : 3 },
+        { "mods_field" : [ "mods/originInfo/dateIssued" ], "modify_value_for_index" : "true", "concat_id" : 4 },
+        { "mods_field" : [ "mods/originInfo/dateOther" ], "modify_value_for_index" : "true", "concat_id" : 5 }
+      ],
+      "concatenation" : [ "1", " - ", 2, " : ", 3, ", ", 4, ", ", 5 ],
+      "searchworks_examples" : [ "sh996xw9752" ]
+    },
+    "allows_multiple_values" : "true",
+    "in_searchworks" : {
+      "search_results" : { "label" : "Imprint", "first" : "true" }
+    }
+  },
+
+  "language" : {
+    "has_marc_source" : {
+      "source_fields" : [
+        { "marc_field" : [ "00835", "00836", "00837" ], "is_mapped" : "true" },
+        { "marc_field" : [ "041a" ], "only_if" : "value length is evenly divisible by 3", "split_by" : 3, "is_mapped" : "true" },
+        { "marc_field" : [ "041d" ], "is_mapped" : "true" },
+        { "marc_field" : [ "041e" ], "is_mapped" : "true" },
+        { "marc_field" : [ "041j" ], "is_mapped" : "true" }
+      ]
+    },
+    "has_mods_source" : {
+      "source_fields" : [
+        { "mods_field" : [ "mods/languageTerm[@type=\"text\"]" ], "only_if" : "term is in mapping values", "is_mapped" : "false" },
+        { "mods_field" : [ "mods/languageTerm[@type=\"code\"]" ], "is_mapped" : "true" }
+      ]
+    },
+    "allows_multiple_values" : "true",
+    "uniquify_all" : "true",
+    "has_mapping" : {
+      "mapping" : "SEARCHWORKS_LANGUAGES",
+      "also_keep_original_value" : "false",
+      "if_value_not_in_mapping_default_to" : "blank"
+    },
+    "in_searchworks" : {
+      "facet" : [ "Language" ]
+    }
+  }
+}
+}
+]
