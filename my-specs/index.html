@@ -9,10 +9,28 @@ title: specs
     <title>Home</title>
   </head>
   <body>
-    <h1>Hello World!</h1>
-    <!-- {{ site.data.sample }} -->
-    {% for field in site.data.title_display %}
-      <p>{{ field }}</p>
+    <h1>Solr fields</h1>
+    {% for field in site.data.sample2 %}
+    <ul>
+      {% for f in field[0] %}
+      <li>{{ f }}</li>
+      <ul>
+        <li>MARC fields:</li>
+          <ul>
+            {% for x in field[1].has_marc_source.source_fields %}
+              <li>{{ x.marc_field | join: ", " }}</li>
+            {% endfor %}
+          </ul>
+        <li>MODS fields</li>
+          <ul>
+            {% for x in field[1].has_mods_source.source_fields %}
+              <li>{{ x.mods_field | join: ", " }}</li>
+            {% endfor %}
+          </ul>
+      </ul>
+
+      {% endfor %}
+    </ul>
     {% endfor %}
   </body>
 </html>
